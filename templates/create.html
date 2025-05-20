@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create a Note</title>
+  <style>
+    .save-button {
+  display: inline-block;
+  background-color: #0366d6;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(3, 102, 214, 0.2);
+}
+
+.save-button:hover {
+  background-color: #0255b3;
+  transform: translateY(-2px);
+}
+
+.save-button:active {
+  transform: translateY(0);
+  background-color: #024b9e;
+}
+
+    @font-face {
+      font-family: 'SF Pro';
+      src: url('/static/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+    }
+
+    body {
+      margin: 0;
+      font-family: 'SF Pro', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f8f8;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .navbar .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #000;
+      border-bottom: 2px solid #000;
+    }
+
+    /* About section */
+    .create-container {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    .create-container h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .create-container p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .input-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+.input-container input,
+.input-container textarea {
+  width: 100%;
+  padding: 14px 12px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  transition: all 0.3s ease;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.input-container label {
+  position: absolute;
+  top: 16px;
+  left: 12px;
+  color: #999;
+  background: #fff;
+  padding: 0 5px;
+  transition: 0.2s ease all;
+  pointer-events: none;
+  font-size: 16px;
+}
+
+.input-container input:focus,
+.input-container textarea:focus {
+  border-color: #0366d6;
+}
+
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label,
+.input-container textarea:focus + label,
+.input-container textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  font-size: 13px;
+  color: #0366d6;
+}
+
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo"><a style="color: #000; text-decoration: none;" href="/">Memnotes</a></div>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="contact">Contact</a>
+      {% if username %}
+    <a href="/logout" style="margin-left: 1.5rem; font-weight: 700; color: #d9534f;">Sign Out</a>
+  {% else %}
+    <a href="/login" style="margin-left: 1.5rem; font-weight: 700; color: #0366d6;">Login</a>
+    <a href="/signup" style="margin-left: 1.5rem; font-weight: 700; color: #0366d6;">Sign Up</a>
+  {% endif %}
+    </nav>
+  </header>
+
+  <section class="create-container">
+    <h2>Create a Note</h2>
+    <form method="POST" action="/create_note">
+        <div class="input-container">
+          <textarea id="note" name="content" placeholder=" " required></textarea>
+          <label for="note">Content</label>
+        </div>    
+<br><br><br><br>        <button type="submit" class="save-button">Save Note</button>
+
+      </div>
+    </form>
+      
+    </section>
+
+</body>
+</html>

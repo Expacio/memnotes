@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us | Memnotes</title>
+  <style>
+    @font-face {
+      font-family: 'SF Pro';
+      src: url('/static/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+    }
+
+    body {
+      margin: 0;
+      font-family: 'SF Pro', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f8f8;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .navbar .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #000;
+      border-bottom: 2px solid #000;
+    }
+
+    /* About section */
+    .about-container {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    .about-container h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-container p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo"><a style="color: #000; text-decoration: none;" href="/">Memnotes</a></div>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="contact">Contact</a>
+      {% if username %}
+    <a href="/logout" style="margin-left: 1.5rem; font-weight: 700; color: #d9534f;">Sign Out</a>
+  {% else %}
+    <a href="/login" style="margin-left: 1.5rem; font-weight: 700; color: #0366d6;">Login</a>
+    <a href="/signup" style="margin-left: 1.5rem; font-weight: 700; color: #0366d6;">Sign Up</a>
+  {% endif %}
+    </nav>
+  </header>
+
+  <section class="about-container">
+    <h2>About Us</h2>
+    <p style="font-size: 25px;">
+      <strong>Memnotes</strong> is a new way to create and manage your thoughts, notes or whatever it could be.<br>The goal of this project is to provide the world with a service that allows anyone to create <strong>notes or snippets</strong>
+    <br><br>Made with ♥️ by Akshay
+    
+    </p>
+    </section>
+
+</body>
+</html>

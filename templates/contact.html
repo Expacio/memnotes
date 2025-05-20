@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us | Memnotes</title>
+  <style>
+    @font-face {
+      font-family: 'SF Pro';
+      src: url('/static/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+    }
+    body {
+      margin: 0;
+      font-family: 'SF Pro', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f8f8;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .navbar .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+    }
+    .navbar .nav-links a:hover {
+      color: #000;
+      border-bottom: 2px solid #000;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    main h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    main p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    main a.github-link {
+      display: inline-block;
+      margin-top: 1rem;
+      text-decoration: none;
+      color: #0366d6;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    main a.github-link:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><a style="color: #000; text-decoration: none;" href="/">Memnotes</a></div>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="about">About Us</a>
+      {% if username %}
+      <a href="/logout" style="margin-left: 1.5rem; font-weight: 700; color: #d9534f;">Sign Out</a>
+    {% else %}
+      <a href="/login" style="margin-left: 1.5rem; font-weight: 700; color: #0366d6;">Login</a>
+      <a href="/signup" style="margin-left: 1.5rem; font-weight: 700; color: #0366d6;">Sign Up</a>
+    {% endif %}
+    </nav>
+  </header>
+
+  <main>
+    <h2>Contact Us</h2>
+    <p>
+      Memnotes is created by Akshay Mishra.<br />
+      Have questions, feedback, or want to say hello? Reach out anytime!
+    </p>
+    <p>
+      
+      <a href="https://github.com/Expacio" class="github-link" target="_blank" rel="noopener noreferrer">
+        Follow me on GitHub
+      </a>
+    </p>
+  </main>
+  
+
+  <footer>
+    Made with ♥️ by Akshay Mishra
+  </footer>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memnotes | Home</title>
+  <style>
+    @font-face {
+      font-family: 'SF Pro';
+      src: url('/static/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+    }
+
+    body {
+      margin: 0;
+      font-family: 'SF Pro', sans-serif;
+      background-color: #ffffff;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f8f8;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .navbar .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #000;
+      border-bottom: 2px solid #000;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .note {
+      background-color: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      text-align: left;
+    }
+
+    .note h3 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      color: #333;
+    }
+
+    .note p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .note small {
+      display: block;
+      margin-top: 10px;
+      color: #888;
+    }
+
+    .cta {
+      margin-top: 3rem;
+      font-size: 1.25rem;
+    }
+
+    .cta a {
+      color: #0366d6;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    .cta a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><a style="color: #000; text-decoration: none;" href="/">Memnotes</a></div>
+    <nav class="nav-links">
+      <a href="/about">About Us</a>
+      <a href="/contact">Contact</a>
+      {% if username %}
+        <a href="/logout" style="margin-left: 1.5rem; font-weight: 700; color: #d9534f;">Sign Out</a>
+      {% else %}
+        <a href="/login" style="margin-left: 1.5rem; font-weight: 700; color: #0366d6;">Login</a>
+        <a href="/signup" style="margin-left: 1.5rem; font-weight: 700; color: #0366d6;">Sign Up</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Welcome to Memnotes</h1>
+    <h2>a <strong style="color:#ffb300;">Google Keep</strong> ripoff</h2>
+
+    {% if not notes %}
+      <div class="cta">
+        <p style="font-size: 1.5rem;">You haven't created any notes yet.</p>
+        <a href="/create">Let's create one</a>
+      </div>
+    {% else %}
+      <div class="cta">
+        <a href="/create">+ Create New Note</a>
+      </div>
+      <br><br>
+      {% for note in notes %}
+      <script>
+        function copyToClipboard(text) {
+          navigator.clipboard.writeText(text).then(function() {
+            ;
+          }, function(err) {
+            alert("Failed to copy text: " + err);
+          });
+        }
+      </script>
+  <div style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin: 20px auto; max-width: 600px;">
+    <p class="note-content">{{ note[1] }}</p>
+    <small>Created on {{ note[2] }} <br>ID: {{ note[3] }}</small>
+    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+      <form action="/delete_note" method="POST">
+        <input type="hidden" name="title" value="{{ note[0] }}">
+        <input type="hidden" name="content" value="{{ note[1] }}">
+        <button type="submit" style="background-color: #d9534f; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">Delete</button>
+      </form>
+      <form action="/edit?id={{ note[3] }}" method="POST">
+        <input type="hidden" name="title" value="{{ note[0] }}">
+        <input type="hidden" name="content" value="{{ note[1] }}">
+        <button type="submit" style="background-color: #ffa200; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">Edit</button>
+      </form>
+      <button onclick="copyToClipboard(this.parentElement.parentElement.querySelector('.note-content').innerText)" style="background-color: #28a745; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">Copy</button>
+    </div>
+  </div>
+  
+    
+  </div>
+{% endfor %}
+
+    {% endif %}
+  </div>
+</body>
+</html>
