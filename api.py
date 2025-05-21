@@ -29,7 +29,6 @@ def colortxt(text, color):
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.secret_key = 'your-secret-key'  # Change this to a secure random key!
 
 DATABASE = "users.db"
 
@@ -140,7 +139,7 @@ def login():
         username = request.form["username"].strip()
         password = request.form["password"]
         user = get_user(username)
-        if user and user[2] == password:  # password is 3rd column
+        if user and user[2] == password:  
             session["username"] = username
             flash("Logged in successfully!")
             return redirect(url_for("index"))
