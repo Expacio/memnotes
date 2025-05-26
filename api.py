@@ -197,7 +197,7 @@ def edit_note():
 
 
     with sqlite3.connect(DATABASE) as conn:
-        conn.execute(
+        conn.execute(   
             "UPDATE notes set content = ? WHERE code = ?",
             (request.form.get('content'),request.args.get('id'),)
         )
