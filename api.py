@@ -29,8 +29,6 @@ def colortxt(text, color):
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.secret_key = 'your-secret-key'  # Change this to a secure random key!
-
 DATABASE = "users.db"
 
 class Note:
