@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, session, url_for, flash
+from flask import Flask, render_template, request, redirect, session, url_for, flash, jsonify
 import sqlite3
 from enum import Enum
 import logging
 import os
+import search
 from datetime import datetime
 
 # os.environ['FLASK_ENV'] = 'production'
@@ -104,6 +105,15 @@ def delete_note():
 
     return redirect(url_for("index"))
 
+@app.route("/search")
+def searchnotes():
+    query = request.args.get('q', '').lower().strip()
+    username = session.get('username')
+    if username:
+        with sqlite3.connect(DATABASE) as conn:
+            return jsonify(search.search_notes(query, username, conn))
+    else:
+        return jsonify({'error': 'not logged in!!!!'})
 
 @app.route("/")
 def index():
@@ -120,7 +130,11 @@ def index():
         (title, content, datetime.strptime(time, "%Y-%m-%d %H:%M:%S.%f").strftime("%b %d, %Y at %I:%M %p"), code)
         for title, content, time, code in raw_notes
     ]
-    return render_template("index.html", username=username, notes=notes)
+    if not request.args.get('query'):
+        return render_template("index.html", username=username, notes=notes, show_search_box=True)
+    with sqlite3.connect(DATABASE) as conn:
+        queried_notes = search.search_notes(request.args.get('query'), username, conn)
+    return render_template("index.html", username=username, notes=queried_notes, show_search_box=False, query=request.args.get('query'))
 
 
 @app.route("/about")

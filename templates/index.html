@@ -86,13 +86,98 @@
     }
 
     .cta a {
-      color: #0366d6;
+      color: #0015ffc8;
       font-weight: bold;
       text-decoration: none;
       font-size: 1.2rem;
     }
 
     .cta a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <style>
+    @font-face {
+      font-family: 'SF Pro';
+      src: url('/static/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+    }
+    body {
+      margin: 0;
+      font-family: 'SF Pro', sans-serif;
+      background: #fff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f8f8;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .navbar .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+    }
+    .navbar .nav-links a:hover {
+      color: #000;
+      border-bottom: 2px solid #000;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 400px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input[type="text"], input[type="password"] {
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.75rem 1rem;
+      font-size: 1.1rem;
+      background-color: #4b9f94;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #024ea2;
+    }
+    .signup-link {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+    .signup-link a {
+      color: #0366d6;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .signup-link a:hover {
       text-decoration: underline;
     }
   </style>
@@ -125,6 +210,17 @@
       <div class="cta">
         <a href="/create">+ Create New Note</a>
       </div>
+      {% if not show_search_box %}
+      <p style="font-size: 30px;">Notes matching with the query <strong style="color: #28a745;">{{query}}</strong>:</p>
+      {%endif%}
+      <br><br>
+      {% if show_search_box %}
+  <form method="GET" action="">
+    <input type="text" name="query" placeholder="Search" required style="border-radius: 30px;" />
+    <button type="submit">Search</button>
+  </form>
+{% endif %}
+
       <br><br>
       {% for note in notes %}
       <script>
@@ -136,8 +232,8 @@
           });
         }
       </script>
-  <div style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin: 20px auto; max-width: 600px;">
-    <p class="note-content">{{ note[1] }}</p>
+  <div style="border: 5px solid #000000; border-radius: 25px; padding: 20px; margin: 5px auto; max-width: 600px;">
+    <p class="note-content" style="font-size: 25px;">{{ note[1] }}</p>
     <small>Created on {{ note[2] }}</small>
     <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
       <form action="/delete_note" method="POST">
