@@ -118,7 +118,7 @@
 
     {% if not notes %}
       <div class="cta">
-        <p style="font-size: 1.5rem;">You haven't created any notes yet.</p>
+        <p style="font-size: 1.5rem;">Hi <strong style="color: #28a745;">{{ username }}</strong>, you haven't created any notes yet.</p>
         <a href="/create">Let's create one</a>
       </div>
     {% else %}
@@ -138,7 +138,7 @@
       </script>
   <div style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin: 20px auto; max-width: 600px;">
     <p class="note-content">{{ note[1] }}</p>
-    <small>Created on {{ note[2] }} <br>ID: {{ note[3] }}</small>
+    <small>Created on {{ note[2] }}</small>
     <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
       <form action="/delete_note" method="POST">
         <input type="hidden" name="title" value="{{ note[0] }}">
