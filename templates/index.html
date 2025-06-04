@@ -306,7 +306,7 @@
       </script>
   <div style="border: 5px solid #000000; border-radius: 25px; padding: 20px; margin: 5px auto; max-width: 600px;">
     <p class="note-content" style="font-size: 25px;">{{ note[1] }}</p>
-    <small>Created on {{ note[2] }}</small>
+    <center><small>Created on {{ note[2] }}</small></center>
     <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
       <form action="/delete_note" method="POST">
         <input type="hidden" name="title" value="{{ note[0] }}">
