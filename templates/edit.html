@@ -24,6 +24,49 @@
   transform: translateY(-2px);
 }
 
+.dark-mode .logo-link {
+  color: white !important;
+}
+.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .navbar {
+  background-color: #1f1f1f;
+  box-shadow: 0 2px 5px rgba(255,255,255,0.05);
+}
+
+.dark-mode .navbar .nav-links a {
+  color: #ccc;
+}
+
+.dark-mode .navbar .nav-links a:hover {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.dark-mode .textarea {
+  color: #ffffff !important;
+  background-color: #333;
+}
+
+.dark-mode .textarea_content {
+  color:  #000000 !important;
+  background-color: #434343;
+}
+
+.dark-mode .note {
+  background-color: #1e1e1e;
+  color: #ddd;
+  box-shadow: 0 2px 5px rgba(255,255,255,0.05);
+}
+
+.dark-mode input[type="text"], .dark-mode input[type="password"] {
+  background-color: #333;
+  color: #eee;
+  border: 1px solid #555;
+}
 .save-button:active {
   transform: translateY(0);
   background-color: #024b9e;
@@ -138,8 +181,11 @@
 <body>
 
   <header class="navbar">
-    <div class="logo"><a style="color: #000; text-decoration: none;" href="/">Memnotes</a></div>
+    <div class="logo"><a style="color: #000; text-decoration: none;" href="/" class="logo-link">Memnotes</a></div>
     <nav class="nav-links">
+      <button id="darkModeToggle" style="color: #ffffff; background-color: #241d1d; margin-left: 2rem; padding: 8px 14px; border-radius: 6px; border: none; cursor: pointer;">
+  Toggle Dark Mode
+</button>
       <a href="/">Home</a>
       <a href="contact">Contact</a>
       {% if username %}
@@ -155,8 +201,8 @@
     <h2>Edit Note</h2>
     <form method="POST" action="/edit_note?id={{ noteid }}">
         <div class="input-container">
-          <textarea id="note" name="content" placeholder=" " required></textarea>
-          <label for="note">New Content</label>
+          <textarea id="note" name="content" class="textarea" placeholder=" " required></textarea>
+          <label for="note" class="textarea_content">New Content</label>
         </div>    
 <br><br><br><br>        <button type="submit" class="save-button">Confirm Change</button>
 
@@ -164,6 +210,21 @@
     </form>
       
     </section>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const currentMode = localStorage.getItem('memnotes-dark-mode');
 
+    if (currentMode === 'enabled') {
+      document.body.classList.add('dark-mode');
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const mode = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
+      localStorage.setItem('memnotes-dark-mode', mode);
+    });
+  });
+</script>
 </body>
 </html>
