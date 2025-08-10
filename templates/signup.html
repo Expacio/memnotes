@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up | Memnotes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f8f8;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .navbar .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+    }
+    .navbar .nav-links a:hover {
+      color: #000;
+      border-bottom: 2px solid #000;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 400px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input[type="text"], input[type="password"] {
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.75rem 1rem;
+      font-size: 1.1rem;
+      background-color: #0366d6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #024ea2;
+    }
+    .login-link {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+    .login-link a {
+      color: #0366d6;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><a style="color: #000; text-decoration: none;" href="/">Memnotes</a></div>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About Us</a>
+      <a href="/contact">Contact</a>
+      {% if username %}
+    <a href="/logout" style="margin-left: 1.5rem; font-weight: 700; color: #d9534f;">Sign Out</a>
+  {% else %}
+    <a href="/login" style="margin-left: 1.5rem; font-weight: 700; color: #0366d6;">Login</a>
+    <a href="/signup" style="margin-left: 1.5rem; font-weight: 700; color: #0366d6;">Sign Up</a>
+  {% endif %}
+    </nav>
+  </header>
+
+  <main>
+    <h2>Sign Up</h2>
+    <form method="POST" action="/signup">
+      <input type="text" name="username" placeholder="Choose a username" required />
+      <input type="password" name="password" placeholder="Choose a password" required />
+      <button type="submit">Create Account</button>
+    </form>
+    <div class="login-link">
+      Already have an account? <a href="/login">Log in</a>
+    </div>
+  </main>
+</body>
+</html>
