@@ -64,7 +64,7 @@ def edit_note(code, new_content):
     nc.update_one({"code": code}, {"$set": {"content": new_content}})
 
 
-def search_notes(query, username, db):
+def search_notes(query, username):
     data = nc.find(
         {
             "username": username,
