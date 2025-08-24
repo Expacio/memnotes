@@ -3,7 +3,7 @@
 A simple, fast, and modern **note-taking web app** built with **Flask** and **MongoDB**, deployed on **Vercel**.  
 Users can **sign up, log in, create, edit, search, and delete notes** — all in a clean web interface.  
 
-🔗 **Live APP:** [Memnotes | Click Here](https://memnotes-ten.vercel.app/)  
+🔗 **Live APP:** [Memnotes | Click Here](https://memnotes-seven.vercel.app/)  
 
 ---
 
