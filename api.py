@@ -108,7 +108,7 @@ def index():
         return render_template(
             "index.html", username=username, notes=notes, show_search_box=True
         )
-    queried_notes = db.search_notes(request.args.get("query"), username, conn)
+    queried_notes = db.search_notes(request.args.get("query"), username)
     return render_template(
         "index.html",
         did_search=True,
