@@ -6,6 +6,7 @@ Users can **sign up, log in, create, edit, search, and delete notes** — all in
 # Libs
 Build using **FLask** and **SQLite** alone.
 
+# Live App Demo
 🔗 **Live APP:** [Memnotes | Click Here](https://memnotes-seven.vercel.app/)  
 
 ---
